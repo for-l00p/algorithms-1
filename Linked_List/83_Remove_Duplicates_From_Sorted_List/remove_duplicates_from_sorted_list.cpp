@@ -18,19 +18,21 @@ Given a sorted linked list, delete all duplicates such that each element appear 
 
 class Solution {
 public:
-  ListNode *deleteDuplicates(ListNode *head) {
-    if (head == NULL) return NULL;
-    ListNode *pre = head;
-    ListNode *p = head->next;
-    while (p != NULL){
-      if(p -> val == pre -> val){
-	pre->next = p->next;
-      }
-      else{
-	pre = p;
-      }
-      p = p->next;
+    ListNode *deleteDuplicates(ListNode *head) {
+        if(head == NULL){
+            return head;
+        }
+        ListNode *curt = head;
+        while(curt->next){
+            if(curt->val == curt->next->val){
+                ListNode *toDelete = curt->next;
+                curt->next = curt->next->next;
+                delete toDelete;
+            }
+            else{
+                curt = curt->next;
+            }
+        }
+        return head;
     }
-    return head;
-  }
 };
