@@ -22,51 +22,24 @@ Given m, n satisfy the following condition:
 //http://blog.csdn.net/kenden23/article/details/17552671
 class Solution {
 public:
-  // Merge
-  ListNode *append(ListNode *p, ListNode *tail){
-    if( p == NULL){
-      p -> next = tail;
-    }
-    while(p -> next != NULL){
-      p = p->next;
-    }
-    p->next = tail;
-    return p;
-  }
-    
-  // Reverse
-  //http://stackoverflow.com/questions/4908193/create-a-reverse-linkedlist-in-c-from-a-given-linkedlist
-  //http://www.cppblog.com/Tim/archive/2012/11/05/194535.html
-  ListNode *reverseList(ListNode *head){
-    if(head == NULL) return NULL;
-    ListNode *rev_head = NULL;
-    ListNode *ori_head = head;
-    while(ori_head){
-      ListNode *ori_head_candi = ori_head -> next;
-      ori_head -> next = rev_head;
-      rev_head = ori_head;
-      ori_head = ori_head_candi;
-    }
-    return rev_head;
-  }
-
-  //http://blog.csdn.net/kenden23/article/details/17552671
-  ListNode *reverseBetween(ListNode *head, int m, int n) {
-    ListNode *dummy = new ListNode(0);      // dummy(p) -> head -> (1'th Node)...
-    ListNode *p = dummy;
-    dummy -> next = head;
+    ListNode *reverseBetween(ListNode *head, int m, int n) {
+        ListNode *dummy = new ListNode(0);
+        dummy->next = head;
+        ListNode *node = dummy;
         
-    for(int i = 1; i < m; i++){             // dummy -> ... -> p(m-1'th) -> head(m'th)
-      p = p -> next;
-      head = p -> next;
-    }
+        ListNode *pre = dummy;
+        for(int i = 0; i < m-1; i++){
+            pre = pre->next;
+        }
         
-    for(; m < n; m++){
-      ListNode *push_ahead = head -> next;    //capture push_ahead (head -> [push_ahead] -> next_push_adhead)
-      head -> next = push_ahead -> next;      //delete push_ahead
-      push_ahead -> next = p -> next;         //insert push_ahead (p -> [push_ahead] -> head -> next_push_adhead)
-      p -> next = push_ahead;                 //insert push_ahead
+        head = pre->next;
+        for(int i = m; i < n; i++){
+            ListNode *tmp = head->next;
+            head->next = tmp->next;
+            tmp->next = pre->next;
+            pre->next = tmp;
+        }
+        
+        return dummy->next;
     }
-    return dummy -> next;
-  }
 };
