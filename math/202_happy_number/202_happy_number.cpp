@@ -10,7 +10,7 @@ A happy number is a number defined by the following process: Starting with any p
 62 + 82 = 100
 12 + 02 + 02 = 1
 */
-
+// http://www.cnblogs.com/grandyang/p/4447233.html
 class Solution {
 public:
   bool isHappy(int n) {

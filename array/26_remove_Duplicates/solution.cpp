@@ -12,16 +12,17 @@ Your function should return length = 2, with the first two elements of nums bein
 
 class Solution {
 public:
-  int removeDuplicates(vector<int>& nums) {
-    if(!nums.size()) return 0;
-    // i store the size of the cleaned array;
-    int i = 1;
-    for(int j = 1; j < nums.size(); j++){
-      if(nums[j] != nums[j-1]){
-	nums[i] = nums[j];
-	i++;
-      }
+    int removeDuplicates(vector<int>& nums) {
+        if(!nums.size()) return 0;
+        // i store the size of the cleaned array;
+        int index = 1;
+        for(int i = 1; i < nums.size(); i++){
+            if(nums[i] != nums[i-1]){
+                nums[index] = nums[i];
+                index++;
+            }
+        }
+        return index;
     }
-    return i;
-  }
+    
 };
