@@ -1,0 +1,18 @@
+class Solution {
+public:
+  int uniquePaths(int m, int n) {
+    int arr[n];
+    for(int i = 0; i < m; i++){
+      for(int j = 0; j < n; j++){
+	if(j == 0 || i == 0){
+	  arr[j] = 1;
+	}
+	else{
+	  // self + left
+	  arr[j] = arr[j] + arr[j-1];
+	}
+      }
+    }
+    return arr[n-1];
+  }
+};
