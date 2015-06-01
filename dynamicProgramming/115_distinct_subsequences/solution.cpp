@@ -1,3 +1,16 @@
+/*
+ s[~~~~~X```````]    +   s[~~~~~X*`````]
+ t[~~X]                  t[~~]
+ 
+ r   a   b   b   b   i   t
+ [1  1   1   1   1   1   1   1]
+ r   [0  1   1
+ a   [0  0   1   1   1
+ b   [0  0   0   1   2
+ b   [0
+ i   [0
+ t   [0
+ */
 class Solution {
 public:
   int numDistinct(string s, string t) {
